@@ -45,14 +45,21 @@ while (ProgramOn){
     }
     else if (answer == "2")
     {
-        //print list
-        Console.WriteLine("Ditt personalregister: ");
-        foreach (Staff person in StaffRegister)
+        if (StaffRegister.Count == 0) 
         {
-            Console.WriteLine($"Namn: {person.Name}, lön: {person.Salary}");
+            Console.WriteLine("Personalregistret är tomt.");
+            PrintConsoleInstructions();
         }
-        Console.WriteLine();
-        PrintConsoleInstructions();
+        //print list
+        else {
+            Console.WriteLine("Ditt personalregister: ");
+            foreach (Staff person in StaffRegister)
+            {
+                Console.WriteLine($"Namn: {person.Name}, lön: {person.Salary}");
+            }
+            Console.WriteLine();
+            PrintConsoleInstructions();
+        }
     }
     else if (answer == "9")
     {
