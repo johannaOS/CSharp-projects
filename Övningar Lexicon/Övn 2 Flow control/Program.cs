@@ -27,32 +27,25 @@
                         GetAge(true); // true = skriv ut priser i consol
                         break;
                     case "2":
-                        bool amountEnterSuccess = false;
                         int amount = 0;
-                        while (!amountEnterSuccess)
+                        GetAmount(ref amount);
+
+                        //Skapa array av grupp och samla in var och ens ålder.
+                        int[] groupAge = new int[amount];
+                        for (int i = 0; i < amount; i++)
                         {
-                            Console.WriteLine("Hur många är ni i sällskapet?");
-                            try {
-                                amount = int.Parse(Console.ReadLine());
-                                if (amount == 0) { break; }
-                                if (amount < 0) { Console.WriteLine("Ogiltigt antal. Ange sällskapets antal i nummer. Tryck 0 för att återgå till menyn."); }
-                                else if (amount > 250) { Console.WriteLine("Det finns bara 250 platser i biosalongen. Ange ett antal mellan 2 - 250. Tryck 0 för att återgå till menyn."); }
-                                else
-                                {
-                                    Console.WriteLine($"Ni är {amount} i sällskapet.");
-                                    amountEnterSuccess = true; }
-                                //Skapa lista över grupp för att samla in var och ens ålder.
-                                var group = new List<int>();
-                             /*   for (int i = 0; i < amount; i++)
-                                {
-
-                                }*/
-                               // ageEnterSuccess = CheckAge(age);
-
-                            }
-                            catch (FormatException) { Console.WriteLine("Ogiltigt antal! Ange antal i siffror. Tryck 0 för att återgå till menyn.\n");}
-                            catch (OverflowException) { Console.WriteLine("Ogiltigt antal! Ange antal i siffror. Tryck 0 för att återgå till menyn.\n");}
+                            groupAge[i] = GetAge();
+                            if (groupAge[i] == 0) { break; } //Användaren avbröt.
                         }
+                        //beräkna gruppriset
+                        int sum = 0;
+                        foreach (int age in groupAge)
+                        {
+                            if (age<20) { sum += 80; }
+                            else if (age > 64) { sum += 90; }
+                            else { sum += 120; }
+                        }
+                        Console.WriteLine($"Priset för ditt sällskap är: {sum} kr.");
                         break;
 
                     default:
@@ -61,8 +54,25 @@
                 }
             }
         }
-
-        static void GetAge(bool writeToConsol = false)
+        static void GetAmount(ref int amount)
+        {
+            bool amountEnterSuccess = false;
+            while (!amountEnterSuccess)
+            {
+                Console.WriteLine("Hur många är ni i sällskapet?");
+                try
+                {
+                    amount = int.Parse(Console.ReadLine());
+                    if (amount == 0) { break; }
+                    if (amount < 0) { Console.WriteLine("Ogiltigt antal. Ange sällskapets antal i nummer. Tryck 0 för att återgå till menyn."); }
+                    else if (amount > 250) { Console.WriteLine("Det finns bara 250 platser i biosalongen. Ange ett antal mellan 2 - 250. Tryck 0 för att återgå till menyn."); }
+                    else { amountEnterSuccess = true;}
+                }
+                catch (FormatException) { Console.WriteLine("Ogiltigt antal! Ange antal i siffror. Tryck 0 för att återgå till menyn.\n"); }
+                catch (OverflowException) { Console.WriteLine("Ogiltigt antal! Ange antal i siffror. Tryck 0 för att återgå till menyn.\n"); }
+            }
+        }
+        static int GetAge(bool writeToConsol = false)
         {
             bool ageEnterSuccess = false;
             int age = 0;
@@ -78,7 +88,7 @@
                 catch (FormatException) { Console.WriteLine("Ogiltigt nummer! Ange åldern i siffror. Tryck 0 för att återgå till menyn.\n"); }
                 catch (OverflowException) { Console.WriteLine("Ogiltigt nummer! Ange åldern i siffror. Tryck 0 för att återgå till menyn.\n"); }
             }
-           // return age;
+           return age;
         }
 
         static bool CheckAge(int age, bool writeToConsol)
