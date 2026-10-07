@@ -19,65 +19,61 @@ Metoder:
 Uppgift 3
 Skriv programmet
  */
+using Övningar_Lexicon;
+
 bool ProgramOn = true;
 string answer;
 string name;
 float salary;
 var StaffRegister = new List<Staff>();
 
-PrintConsoleInstructions();
+Utilities.PrintConsoleInstructions();
 
 while (ProgramOn){
 
     answer = Console.ReadLine();
-    if (answer == "1")
+    switch (answer)
     {
-        // Enter name and salary
-        Console.WriteLine("Skriv in den anställdes fullständiga namn:");
-        name = Console.ReadLine();
-        Console.WriteLine($"Ange {name}s lön i kronor utan mellanslag:");
-        salary = float.Parse(Console.ReadLine());
-        var StaffAdded = new Staff { Name = name, Salary = salary };
-        StaffRegister.Add(StaffAdded);
+        case "1":
+            // Enter name and salary
+            Console.WriteLine("Skriv in den anställdes fullständiga namn:");
+            name = Console.ReadLine();
+            Console.WriteLine($"Ange {name}s lön i kronor utan mellanslag:");
+            salary = float.Parse(Console.ReadLine());
+            var StaffAdded = new Staff { Name = name, Salary = salary };
+            StaffRegister.Add(StaffAdded);
 
-        Console.WriteLine("Personen har lagts till i registret.");
-        PrintConsoleInstructions();
-    }
-    else if (answer == "2")
-    {
-        if (StaffRegister.Count == 0) 
-        {
-            Console.WriteLine("Personalregistret är tomt.");
-            PrintConsoleInstructions();
-        }
-        //print list
-        else {
-            Console.WriteLine("Ditt personalregister: ");
-            foreach (Staff person in StaffRegister)
+            Console.WriteLine("Personen har lagts till i registret.");
+            Utilities.PrintConsoleInstructions();
+            break;
+        case "2":
+            if (StaffRegister.Count == 0)
             {
-                Console.WriteLine($"Namn: {person.Name}, lön: {person.Salary}");
+                Console.WriteLine("Personalregistret är tomt.");
+                Utilities.PrintConsoleInstructions();
             }
-            Console.WriteLine();
-            PrintConsoleInstructions();
-        }
-    }
-    else if (answer == "9")
-    {
-        ProgramOn = false;
-        //break;
-    }
-    else 
-    {
-        PrintConsoleInstructions();
+            //print list
+            else
+            {
+                Console.WriteLine("Ditt personalregister: ");
+                foreach (Staff person in StaffRegister)
+                {
+                    Console.WriteLine($"Namn: {person.Name}, lön: {person.Salary}");
+                }
+                Console.WriteLine();
+                Utilities.PrintConsoleInstructions();
+            }
+            break;
+        case "9":
+            ProgramOn = false;
+            break;
+        default:
+            Utilities.PrintConsoleInstructions();
+            break;
+
     }
 }
 
-void PrintConsoleInstructions()
-{
-    Console.WriteLine("Tryck 1+enter för att lägga till personal till registret.");
-    Console.WriteLine("Tryck 2+enter för att se all personal i registret.");
-    Console.WriteLine("Tryck 9+enter för att stänga programmet.");
-}
 class Staff
 {
     public string Name { get; set; }

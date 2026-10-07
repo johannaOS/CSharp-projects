@@ -1,3 +1,5 @@
 <Solution>
-  <Project Path="Övningar Lexicon/Övningar Lexicon.csproj" />
+  <Project Path="Learning CSharp/Learning CSharp.csproj" Id="9ec192ab-15cb-4033-929c-9f7a0052e5cc" />
+  <Project Path="Övn 2 Flow control/Övn 2 Flow control.csproj" />
+  <Project Path="Övningar Lexicon/Övn 1 Personalregister.csproj" />
 </Solution>
