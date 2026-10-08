@@ -55,7 +55,19 @@
                             Console.Write(userInput);
                         }
                         break;
-
+                    case "4":
+                        Console.WriteLine("Skriv in en text här på minst 3 ord:"); 
+                        bool userLongInputSuccess = false;
+                        while (!userLongInputSuccess) {
+                            string userLongInput = Console.ReadLine();
+                            var userInputSplit = userLongInput.Split(" ");
+                            try { 
+                                Console.WriteLine(userInputSplit[2]); 
+                                userLongInputSuccess = true; 
+                            }
+                            catch (IndexOutOfRangeException) { Console.WriteLine("Fel! Skriv in en text med minst 3 ord!"); }
+                        }
+                        break;
                     default:
                         Console.WriteLine("Du har angivit en felaktig input.");
                         break;
@@ -115,7 +127,7 @@
         static void PrintMenueChoices()
         {
             Console.WriteLine("\n******** MENY ********\nGör ett val och tryck enter:");
-            Console.WriteLine("0: Stäng av programmet. 1: Se priser. 2: Beräkna priset för grupp. 3: Monkey see, monkey do.");
+            Console.WriteLine("0: Stäng av programmet. 1: Se priser. 2: Beräkna priset för grupp. 3: Monkey see, monkey do. 4. Monkey does selectively.");
 
         }
     }
