@@ -87,7 +87,9 @@ namespace Övn_2_Flow_control
                 {
                     amount = int.Parse(Console.ReadLine());
                     if (amount == 0) { break; }
-                    if (amount < 0) { Console.WriteLine("Ogiltigt antal. Ange sällskapets antal i nummer. Tryck 0 för att återgå till menyn."); }
+                    if (amount < 0) { 
+                        Console.WriteLine("Ogiltigt antal. Ange sällskapets antal i nummer. Tryck 0 för att återgå till menyn."); //kan ersättas med throw new
+                    }
                     else if (amount > 250) { Console.WriteLine("Det finns bara 250 platser i biosalongen. Ange ett antal mellan 2 - 250. Tryck 0 för att återgå till menyn."); }
                     else { amountEnterSuccess = true;}
                 }
