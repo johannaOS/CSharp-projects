@@ -4,12 +4,8 @@
     {
         static void Main(string[] args)
         {
-            // Deklarera variabler
             bool ProgramOn = true;
             string userSelection = "";
-
-            // Visa menyn för användaren
-//            PrintMenueChoices();
 
             while (ProgramOn)
             {
@@ -18,15 +14,16 @@
                 switch (userSelection)
                 {
                     case "0":
-                        {
-                            Console.WriteLine("Stänger av programmet...");
-                            ProgramOn = false;
-                            break;
-                        }
+                        // Användaren väljer att stänga av programmet.
+                        Console.WriteLine("Stänger av programmet...");
+                        ProgramOn = false;
+                        break;
                     case "1":
-                        GetAge(true); // true = skriv ut priser i consol
+                        //Användaren väljer "se pris" och behöver skriva in en giltig åler. Priset visas beroende på ålder.
+                        _ = GetAge(true); // true = skriv ut priser i consol
                         break;
                     case "2":
+                        // Användaren väljer "beräkna gruppris" och behöver skriva in gruppantal samt ålder för alla. Det sammanlagda priset visas.
                         int amount = 0;
                         GetAmount(ref amount);
 
@@ -41,13 +38,14 @@
                         int sum = 0;
                         foreach (int age in groupAge)
                         {
-                            if (age<20) { sum += 80; }
-                            else if (age > 64) { sum += 90; }
-                            else { sum += 120; }
+                            if (age >= 5 && age < 20 ) { sum += 80; }
+                            else if (age >= 20 && age <= 64){ sum += 120; }
+                            else if (age > 64 && age <= 100) { sum += 90; }
                         }
                         Console.WriteLine($"Priset för ditt sällskap är: {sum} kr.");
                         break;
                     case "3":
+                        // Användaren skriver en text och programmet upprepar texten 10 gånger på samma rad.
                         Console.WriteLine("Skriv in en text här:");
                         string userInput = Console.ReadLine();
                         for (int i = 0; i < 10; i++)
@@ -56,6 +54,7 @@
                         }
                         break;
                     case "4":
+                        // Användaren skriver in en text på minst 3 ord och 3:e ordet skrivs ut.
                         Console.WriteLine("Skriv in en text här på minst 3 ord:"); 
                         bool userLongInputSuccess = false;
                         while (!userLongInputSuccess) {
@@ -69,6 +68,7 @@
                         }
                         break;
                     default:
+                        // Användaren måste välja ett giltigt menyval.
                         Console.WriteLine("Du har angivit en felaktig input.");
                         break;
                 }
@@ -118,7 +118,9 @@
             else if (age > 120) { Console.WriteLine($"Du är väldigt gammal! Säker på att du angav rätt ålder? Tryck 0 för att återgå till menyn."); return false; }
             //Tillåtna värden
             if (writeToConsol) {
-                if (age < 20) { Console.WriteLine($"Ungdomspriset är 80 kr."); return true; }
+                if (age < 5) { Console.WriteLine("Barn under 5 år går gratis."); return true; }
+                else if (age > 100) { Console.WriteLine("Pensionärer över 100 år går gratis."); return true; }
+                else if (age < 20) { Console.WriteLine($"Ungdomspriset är 80 kr."); return true; }
                 else if (age > 64) { Console.WriteLine($"Pensionärspriset är 90 kr."); return true; }
                 else { Console.WriteLine($"Standardpriset är 120 kr."); return true; }
             } 
