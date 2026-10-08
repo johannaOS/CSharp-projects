@@ -1,4 +1,6 @@
-﻿namespace Övn_2_Flow_control
+﻿using System.Text.RegularExpressions;
+
+namespace Övn_2_Flow_control
 {
     internal class Program
     {
@@ -59,7 +61,8 @@
                         bool userLongInputSuccess = false;
                         while (!userLongInputSuccess) {
                             string userLongInput = Console.ReadLine();
-                            var userInputSplit = userLongInput.Split(" ");
+                            string userLongInputCleaned = Regex.Replace(userLongInput, @"\s+", " "); // ta bort många mellanslag
+                            var userInputSplit = userLongInputCleaned.Trim().Split(" "); // ta bort mellanslag i början och slutet och splitta.
                             try { 
                                 Console.WriteLine(userInputSplit[2]); 
                                 userLongInputSuccess = true; 
