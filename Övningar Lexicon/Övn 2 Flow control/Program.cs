@@ -47,6 +47,14 @@
                         }
                         Console.WriteLine($"Priset för ditt sällskap är: {sum} kr.");
                         break;
+                    case "3":
+                        Console.WriteLine("Skriv in en text här:");
+                        string userInput = Console.ReadLine();
+                        for (int i = 0; i < 10; i++)
+                        {
+                            Console.Write(userInput);
+                        }
+                        break;
 
                     default:
                         Console.WriteLine("Du har angivit en felaktig input.");
@@ -107,7 +115,7 @@
         static void PrintMenueChoices()
         {
             Console.WriteLine("\n******** MENY ********\nGör ett val och tryck enter:");
-            Console.WriteLine("0: Stäng av programmet. 1: Se priser. 2: Beräkna priset för grupp.");
+            Console.WriteLine("0: Stäng av programmet. 1: Se priser. 2: Beräkna priset för grupp. 3: Monkey see, monkey do.");
 
         }
     }
